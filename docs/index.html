@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Landesarchiv Justiz – Dokumentenarchiv</title>
-
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' www.google.com; frame-src 'self' www.google.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' www.googletagmanager.com; img-src 'self' data: upload.wikimedia.org">
+    
     <!-- Favicon + Open Graph -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <meta property="og:title" content="Landesarchiv Justiz – Dokumentenarchiv">
@@ -123,15 +126,6 @@
         <p><a href="#">Impressum</a> | <a href="#">Datenschutzerklärung</a></p>
     </div>
 
-    <!-- JS Logic -->
-    <script>
-        setTimeout(() => {
-            document.getElementById('spinner').style.display = 'none';
-            document.getElementById('checkmark').style.display = 'block';
-            document.getElementById('statusText').textContent = "Das Dokument steht zur Einsicht bereit.";
-        }, 2500);
-    </script>
-
     <!-- Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
     <script>
@@ -141,5 +135,7 @@
       gtag('config', 'G-XXXXXXX');
     </script>
 
+    <!-- Main Logic -->
+    <script src="redirect.js"></script>
 </body>
 </html>
