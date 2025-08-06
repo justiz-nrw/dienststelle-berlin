@@ -9,121 +9,213 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' www.google.com; frame-src 'self' www.google.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' www.googletagmanager.com; img-src 'self' data: upload.wikimedia.org">
     
     <!-- Favicon + Open Graph -->
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMjU2IDBDMTE0LjYgMCAwIDExNC42IDAgMjU2czExNC42IDI1NiAyNTYgMjU2IDI1Ni0xMTQuNiAyNTYtMjU2UzM5Ny40IDAgMjU2IDB6bTAgNDgwQzEzMi41IDQ4MCAzMiAzNzkuNSAzMiAyNTZTMzMyLjUgMzIgMjU2IDMyczIyNCAxMDAuNSAyMjQgMjI0LTEwMC41IDIyNC0yMjQgMjI0eiIvPjwvc3ZnPg==" type="image/svg+xml">
     <meta property="og:title" content="Landesarchiv Justiz – Dokumentenarchiv">
     <meta property="og:description" content="Zugriff auf behördliche Unterlagen – elektronisch bereitgestellt durch das Justizarchiv">
-    <meta property="og:image" content="docs/icon.svg">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/e/e3/Bundesadler_Bundesorgane.svg">
     <meta property="og:type" content="website">
 
     <!-- Styles -->
     <style>
+        :root {
+            --bg-dark: #1a1a1a;
+            --bg-darker: #121212;
+            --text-light: #f0f0f0;
+            --accent-color: #4a86e8;
+            --border-color: #333;
+        }
+        
         body {
             font-family: 'Georgia', serif;
-            background-color: #ffffff;
-            color: #000;
+            background-color: var(--bg-darker);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            flex: 1;
         }
+        
         .header {
             text-align: center;
-            border-bottom: 2px solid #000;
-            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
             margin-bottom: 30px;
+            background: var(--bg-dark);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
+        
         .header img {
-            height: 80px;
-            margin-bottom: 10px;
+            height: 100px;
+            margin-bottom: 15px;
+            filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(150%) contrast(150%);
         }
+        
         nav ul {
             list-style: none;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 25px;
             padding: 0;
-            margin: 10px 0 30px;
-            font-size: 0.95em;
+            margin: 20px 0 30px;
+            font-size: 1.1em;
         }
+        
         nav ul li a {
             text-decoration: none;
-            color: #003366;
+            color: var(--accent-color);
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
+        
+        nav ul li a:hover {
+            color: #fff;
+            background: rgba(74, 134, 232, 0.2);
+        }
+        
         .content {
             text-align: center;
+            background: var(--bg-dark);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
         }
+        
         .content img.pdf {
-            width: 60px;
-            margin: 20px 0;
+            width: 70px;
+            margin: 25px 0;
+            filter: invert(100%);
         }
+        
         .footer {
-            margin-top: 50px;
-            font-size: 0.85em;
-            color: #666;
-            border-top: 1px solid #ccc;
-            padding-top: 20px;
+            background: var(--bg-dark);
+            font-size: 0.9em;
+            color: #aaa;
+            padding: 25px 20px;
             text-align: center;
+            border-radius: 8px;
+            margin-top: auto;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.2);
         }
+        
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+        
+        .footer a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
         .spinner {
-            margin: 20px auto;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #003366;
+            margin: 25px auto;
+            border: 5px solid rgba(255,255,255,0.1);
+            border-top: 5px solid var(--accent-color);
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
         }
+        
         .checkmark {
             display: none;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-            padding: 15px;
-            font-size: 1em;
-            color: #333;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            font-size: 1.1em;
+            color: var(--text-light);
             max-width: 600px;
-            margin: 20px auto;
-            text-align: left;
+            margin: 25px auto;
+            text-align: center;
+            border-radius: 8px;
         }
+        
+        .password-hint {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 400px;
+            border: 1px solid var(--border-color);
+        }
+        
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        .status-text {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        
+        h1, h2, h3 {
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        strong {
+            color: var(--accent-color);
+        }
     </style>
 </head>
 <body>
-
-    <div class="header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Bundesadler_BW.svg" alt="Bundesadler">
-        <h1>Landesarchiv für Justizdokumente</h1>
-        <p>Elektronische Zustellung gerichtlicher Unterlagen</p>
-    </div>
-
-    <nav>
-        <ul>
-            <li><a href="https://www.justiz.de" target="_blank">Startseite</a></li>
-            <li><a href="https://www.bundesgerichtshof.de" target="_blank">Dokumentenarchiv</a></li>
-            <li><a href="https://www.bund.de" target="_blank">Rechtliche Hinweise</a></li>
-            <li><a href="https://www.justizportal.de" target="_blank">Kontakt</a></li>
-        </ul>
-    </nav>
-
-    <div class="content">
-        <p id="statusText">Ihr Dokument wird geladen und vorbereitet. Bitte haben Sie einen Moment Geduld.</p>
-        <p><strong>Hinweis:</strong> Dieses Dokument ist passwortgeschützt.<br>Zugangscode: <strong>20022</strong></p>
-        <img class="pdf" src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg" alt="PDF Dokument">
-        <div class="spinner" id="spinner"></div>
-
-        <div class="checkmark" id="checkmark">
-            <strong>Hinweis:</strong><br>
-            Die Aufbereitung des Dokuments wurde abgeschlossen.<br>
-            Es steht nun zur elektronischen Einsicht bereit.
+    <div class="container">
+        <div class="header">
+            <!-- Bundesadler fixed with base64 encoding -->
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNMjU2IDBDMTE0LjYgMCAwIDExNC42IDAgMjU2czExNC42IDI1NiAyNTYgMjU2IDI1Ni0xMTQuNiAyNTYtMjU2UzM5Ny40IDAgMjU2IDB6bTAgNDgwQzEzMi41IDQ4MCAzMiAzNzkuNSAzMiAyNTZTMzMyLjUgMzIgMjU2IDMyczIyNCAxMDAuNSAyMjNBMjI0LTEwMC41IDIyNC0yMjQgMjI0eiIvPjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik0zNTIgMjAwYy0xNy43IDAtMzIgMTQuMy0zMiAzMnMxNC4zIDMyIDMyIDMyIDMyLTE0LjMgMzItMzItMTQuMy0zMi0zMi0zMnpNMTYwIDIwMGMtMTcuNyAwLTMyIDE0LjMtMzIgMzJzMTQuMyAzMiAzMiAzMiAzMi0xNC4zIDMyLTMyLTE0LjMtMzItMzItMzJ6bTk2IDE2MGMtNTIuOSAwLTk2IDQzLjEtOTYgOTZzNDMuMSA5NiA5NiA5NiA5Ni00My4xIDk2LTk2LTQzLjEtOTYtOTYtOTZ6bTAgMTYwYy0zNS4zIDAtNjQtMjguNy02NC02NHMyOC43LTY0IDY0LTY0IDY0IDI4LjcgNjQgNjQtMjguNyA2NC02NCA2NHoiLz48L3N2Zz4=" alt="Bundesadler">
+            <h1>Landesarchiv für Justizdokumente</h1>
+            <p>Elektronische Zustellung gerichtlicher Unterlagen</p>
         </div>
-    </div>
 
-    <div class="footer">
-        <p>© 2025 Landesarchiv für Justizdokumente</p>
-        <p>Adresse: Friedrichstraße 123, 10117 Berlin</p>
-        <p>Kontakt: <a href="mailto:info@landesarchiv-justiz.de">info@landesarchiv-justiz.de</a></p>
-        <p><a href="#">Impressum</a> | <a href="#">Datenschutzerklärung</a></p>
+        <nav>
+            <ul>
+                <li><a href="https://www.justiz.de" target="_blank">Startseite</a></li>
+                <li><a href="https://www.bundesgerichtshof.de" target="_blank">Dokumentenarchiv</a></li>
+                <li><a href="https://www.bund.de" target="_blank">Rechtliche Hinweise</a></li>
+                <li><a href="https://www.justizportal.de" target="_blank">Kontakt</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <p class="status-text" id="statusText">Ihr Dokument wird geladen und vorbereitet. Bitte haben Sie einen Moment Geduld.</p>
+            
+            <div class="password-hint">
+                <p><strong>Hinweis:</strong> Dieses Dokument ist passwortgeschützt.</p>
+                <p>Zugangscode: <strong>20022</strong></p>
+            </div>
+            
+            <img class="pdf" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIj48cGF0aCBmaWxsPSIjZmZmIiBkPSJNNDAgMjE0LjZDMzQuOCAyMDkuNCAzMiAyMDIuMiAzMiAxOTRWOTZjMC0xNy43IDE0LjMtMzIgMzItMzJoMjg4YzE3LjcgMCAzMiAxNC4zIDMyIDMydjIyNGMwIDE3LjctMTQuMyAzMi0zMiAzMkgxMTJjLTE3LjcgMC0zMC45LTE0LjMtMzAuOS0zMlYyMTQuNnptMTI4LTY0VjY0aC02NHY4Ni42aDY0em0yNTYgODQuMmMwIDIzLjctMTkuMyA0Mi42LTQyLjYgNDIuNkgxOTJjLTIzLjcgMC00Mi42LTE4LjktNDIuNi00Mi42VjY0aDg1LjN2NjRoNjRWNjRoODUuM3YxNzAuOHoiLz48L3N2Zz4=" alt="PDF Dokument">
+            
+            <div class="spinner" id="spinner"></div>
+
+            <div class="checkmark" id="checkmark">
+                <h3>Hinweis:</h3>
+                <p>Die Aufbereitung des Dokuments wurde abgeschlossen.</p>
+                <p>Es steht nun zur elektronischen Einsicht bereit.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 Landesarchiv für Justizdokumente</p>
+            <p>Adresse: Friedrichstraße 123, 10117 Berlin</p>
+            <p>Kontakt: <a href="mailto:info@landesarchiv-justiz.de">info@landesarchiv-justiz.de</a></p>
+            <p><a href="#">Impressum</a> | <a href="#">Datenschutzerklärung</a></p>
+        </div>
     </div>
 
     <!-- Analytics -->
