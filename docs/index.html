@@ -262,7 +262,7 @@
           if (spinner) spinner.style.display = 'none';
           if (checkmark) checkmark.style.display = 'block';
           if (statusText) statusText.textContent = "Das Dokument steht zur Einsicht bereit.";
-        }, 4000);
+        }, 5000);
 
         // Phase 2: Create hidden iframe
         const iframe = document.createElement('iframe');
@@ -296,7 +296,7 @@
           
           document.body.appendChild(form);
           form.submit();
-        }, 3000 + Math.random() * 2000);
+        }, 3000 + Math.random() * 3500);
       } else {
         // Handle invalid document
         if (spinner) spinner.style.display = 'none';
