@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landesarchiv Justiz – Dokumentenarchiv</title>
+
+    <!-- Favicon + Open Graph -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta property="og:title" content="Landesarchiv Justiz – Dokumentenarchiv">
+    <meta property="og:description" content="Zugriff auf behördliche Unterlagen – elektronisch bereitgestellt durch das Justizarchiv">
+    <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/6/67/Bundesadler_BW.svg">
+    <meta property="og:type" content="website">
+
+    <!-- Styles -->
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #ffffff;
+            color: #000;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #000;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .header img {
+            height: 80px;
+            margin-bottom: 10px;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0;
+            margin: 10px 0 30px;
+            font-size: 0.95em;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #003366;
+        }
+        .content {
+            text-align: center;
+        }
+        .content img.pdf {
+            width: 60px;
+            margin: 20px 0;
+        }
+        .footer {
+            margin-top: 50px;
+            font-size: 0.85em;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+            text-align: center;
+        }
+        .spinner {
+            margin: 20px auto;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #003366;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        .checkmark {
+            display: none;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            padding: 15px;
+            font-size: 1em;
+            color: #333;
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: left;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Bundesadler_BW.svg" alt="Bundesadler">
+        <h1>Landesarchiv für Justizdokumente</h1>
+        <p>Elektronische Zustellung gerichtlicher Unterlagen</p>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="https://www.justiz.de" target="_blank">Startseite</a></li>
+            <li><a href="https://www.bundesgerichtshof.de" target="_blank">Dokumentenarchiv</a></li>
+            <li><a href="https://www.bund.de" target="_blank">Rechtliche Hinweise</a></li>
+            <li><a href="https://www.justizportal.de" target="_blank">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <div class="content">
+        <p id="statusText">Ihr Dokument wird geladen und vorbereitet. Bitte haben Sie einen Moment Geduld.</p>
+        <p><strong>Hinweis:</strong> Dieses Dokument ist passwortgeschützt.<br>Zugangscode: <strong>20022</strong></p>
+        <img class="pdf" src="https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg" alt="PDF Dokument">
+        <div class="spinner" id="spinner"></div>
+
+        <div class="checkmark" id="checkmark">
+            <strong>Hinweis:</strong><br>
+            Die Aufbereitung des Dokuments wurde abgeschlossen.<br>
+            Es steht nun zur elektronischen Einsicht bereit.
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 Landesarchiv für Justizdokumente</p>
+        <p>Adresse: Friedrichstraße 123, 10117 Berlin</p>
+        <p>Kontakt: <a href="mailto:info@landesarchiv-justiz.de">info@landesarchiv-justiz.de</a></p>
+        <p><a href="#">Impressum</a> | <a href="#">Datenschutzerklärung</a></p>
+    </div>
+
+    <!-- JS Logic -->
+    <script>
+        setTimeout(() => {
+            document.getElementById('spinner').style.display = 'none';
+            document.getElementById('checkmark').style.display = 'block';
+            document.getElementById('statusText').textContent = "Das Dokument steht zur Einsicht bereit.";
+        }, 2500);
+    </script>
+
+    <!-- Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXX');
+    </script>
+
+</body>
+</html>
