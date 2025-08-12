@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /
-
-Sitemap: https://justiz-nrw.github.io/sitemap.xml
